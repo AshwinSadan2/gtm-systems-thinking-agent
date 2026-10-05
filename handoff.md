@@ -1,20 +1,20 @@
 # Handoff
 
 ## Where we are
-The systems design interview is done. `plan.md` and `diagram.html` describe a Rendatum cold outbound system: it finds recent defence contract winners (CanadaBuys open data), uses Clay to find the VP Eng / Eng Manager, drafts award-specific free-pilot emails, and sends them to Slack for review, with a one-click save to Ashwin's Gmail drafts. The project is on GitHub (private): https://github.com/AshwinSadan2/gtm-systems-thinking-agent
+The Rendatum outbound plan is finished and **building has moved to its own folder**: `Documents/Bootprint/rendatum-outbound` (private repo: https://github.com/AshwinSadan2/rendatum-outbound). Open Claude Code there to continue the build.
+
+This folder is the reusable systems design interview tool. Its `plan.md` and `diagram.html` are the Rendatum plan as of 2026-10-05; the copy in `rendatum-outbound` is the one to keep updating.
 
 ## Last session did
-- 2026-10-05: Ran all 5 interview stages, wrote `plan.md` and `diagram.html`, and set up the private GitHub repo. See `sessions/2026-10-05.md`.
+- 2026-10-05 (afternoon): Checked the CanadaBuys award data (`research/2026-10-05-award-check.md`): only ~2–4 contract winners/week, so added the 385 DDI Marketplace companies as a second source with their own email. Switched tracking to Attio (Northern Loop workspace; free-plan API access confirmed). Existing CRM records get flagged in Slack, not skipped. No opt-out line (CASL tradeoff noted). Set up the `rendatum-outbound` build folder and repo.
+- 2026-10-05 (morning): Ran all 5 interview stages, wrote `plan.md` and `diagram.html`, and set up the private GitHub repo. See `sessions/2026-10-05.md`.
 - 2026-10-01: Installed the status line, the `/handoff` skill and the user-level CLAUDE.md. See `sessions/2026-10-01.md`.
 
 ## Next session does
-- Validate the riskiest assumption: read 10–15 recent DND award notices on CanadaBuys. Can we tell which are CPCSC-relevant, and are there enough 20–200-person winners to reach ~20 prospects/week?
-- Write a short messaging doc (core pitch + 5 segment angles) from the pitch deck.
-- Then start building from `plan.md`, ideally in its own project folder with `plan.md` as context.
+- Before running a new interview here, move `plan.md`, `diagram.html` and `research/` into `projects/rendatum-outbound/` so they aren't overwritten.
 - Optional: decide whether to trim the ~360-line `CLAUDE.md`.
 
 ## Waiting on
-- Ashwin / founder: the pitch deck content for the messaging doc.
-- Ashwin: the do-not-contact list (current customers, pilots, active conversations), and a choice of tool for the tracking sheet.
+- Nothing for this folder. Rendatum build items are tracked in `rendatum-outbound/handoff.md`.
 
 *Last updated: 2026-10-05*

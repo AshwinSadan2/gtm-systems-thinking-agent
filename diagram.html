@@ -40,21 +40,25 @@ flowchart LR
   Trigger([Every Monday 8am]) --> Backlog{Last week's drafts<br/>still unreviewed?}
   Backlog -- Yes --> Pause[Post 'paused' alert<br/>in Slack]
   Backlog -- No --> Awards[(CanadaBuys award notices<br/>last 60 days)]
+  Backlog -- No --> DDI[(DDI Marketplace list<br/>385 drone & defence-tech firms<br/>saved once)]
 
   subgraph Filter [Filter & match]
-    Defence{Defence-related?}
+    Defence{Defence-related<br/>engineering-type work?}
     Size{20–200 people?}
     Segment[Match to 1 of 5<br/>ICP segments]
-    Seen{Already contacted or<br/>do-not-contact?}
+    Seen{Already in Rendatum list<br/>or do-not-contact?}
   end
 
-  Awards --> Defence
+  Awards -- 📄 real contracts --> Defence
   Defence -- No / unsure --> Skip[Skip]
   Defence -- Yes --> Size
+  DDI -- 🛩️ pre-approved suppliers --> Size
   Size -- No --> Skip
   Size -- Yes --> Segment --> Seen
   Seen -- Yes --> Skip
-  Seen -- No --> Contact{Clay finds<br/>VP Eng / Eng Mgr?}
+  Seen -- No --> InCRM{Already elsewhere<br/>in Attio?}
+  InCRM -- Yes: add 👀 flag --> Contact{Clay finds<br/>VP Eng / Eng Mgr?}
+  InCRM -- No --> Contact
 
   Clay[(Clay:<br/>company + contacts)] -.-> Contact
   Contact -- Yes --> Draft
@@ -62,7 +66,7 @@ flowchart LR
   Contact -- No, 50+ people --> NoPerson[Couldn't-find-person list]
 
   Msg[(Messaging doc<br/>5 segment angles)] -.-> Draft
-  Draft[Rank by recency, top 20<br/>Draft award-specific<br/>free-pilot email]
+  Draft[Contract winners first,<br/>fill to 20 with DDI firms<br/>📄 award email / 🛩️ DDI email]
 
   Draft --> Slack[Slack #outbound-drafts<br/>draft + award link + summary]
   NoPerson --> Slack
@@ -71,7 +75,7 @@ flowchart LR
   Review -- Skip + reason --> Track
   Review -- Edit / Save --> Gmail[Draft saved to<br/>Ashwin's Gmail]
   Gmail --> Send{{👤 Ashwin presses Send}}
-  Send --> Track[(Tracking sheet<br/>= already-contacted list)]
+  Send --> Track[(Attio: Rendatum Outbound list<br/>= already-contacted list)]
   Track -.-> Seen
 
   Log[(logs/run.log<br/>every step, plain English)]
@@ -80,7 +84,7 @@ flowchart LR
   classDef data fill:#e7f1ff,stroke:#4a7fd4,color:#000;
   classDef stop fill:#f3f3f3,stroke:#999,color:#555;
   class Review,Send human;
-  class Awards,Clay,Msg,Track,Log data;
+  class Awards,DDI,Clay,Msg,Track,Log data;
   class Skip,Pause,NoPerson stop;
   </div>
 
